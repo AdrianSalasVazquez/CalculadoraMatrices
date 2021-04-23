@@ -1,8 +1,10 @@
 import java.util.Scanner;
-public class CaluladoraMain {
-
+public class CalculadoraMain {
+	
 	public static void main(String[] args) {
+		
 		Scanner scn = new Scanner(System.in);
+		
 		boolean salir = false;
 		int op;
 		
@@ -26,7 +28,11 @@ public class CaluladoraMain {
 			
 			switch (op) {
 				case 1: {
-					System.out.println("Suma de dos matrices");
+					System.out.println("Suma de dos matrices: ");
+					
+					int[][] resultado = sumaMatriz();
+					imprimirMatriz(resultado);
+					
 					break;
 				}
 				
@@ -62,6 +68,10 @@ public class CaluladoraMain {
 	
 				case 8: {
 					System.out.println("Resta de dos matrices");
+					
+					int[][] resultado = restaMatriz();
+					imprimirMatriz(resultado);
+					
 					break;
 				}
 				
@@ -78,6 +88,75 @@ public class CaluladoraMain {
 			}
 		}while(!salir);
 		
+	}
+	
+	public static int[][] crearMatriz () {
+		Scanner scn = new Scanner(System.in);
+		
+		System.out.println("Introduce el numero de filas:");
+		int filas = scn.nextInt();
+		System.out.println("Introduce el numero de columnas:");
+		int columnas = scn.nextInt();
+		
+		int[][] m = new int[filas][columnas];
+		
+		for (int i = 0; i < filas; i++) {
+			System.out.println("Valores de la fila " + (i + 1) + ":");
+			for (int j = 0; j < columnas; j++) {
+				int num = scn.nextInt();
+				m[i][j] = num;
+			}
+		}
+		return m;
+	}
+	
+	public static int[][] sumaMatriz() {
+		int[][] m1 = crearMatriz();
+		int[][] m2 = crearMatriz();
+		
+		int filas = m1.length;
+		int columnas = m1[0].length;
+		
+		int[][] result = new int[filas][columnas];
+		
+		for (int i = 0; i < filas; i++) {
+			for (int j = 0; j < columnas; j++) {
+				result[i][j] = m1[i][j] + m2[i][j];
+			}
+		}
+		
+		return result;
+	}
+	
+	public static int[][] restaMatriz() {
+		int[][] m1 = crearMatriz();
+		int[][] m2 = crearMatriz();
+		
+		int filas = m1.length;
+		int columnas = m1[0].length;
+		
+		int[][] result = new int[filas][columnas];
+		
+		for (int i = 0; i < filas; i++) {
+			for (int j = 0; j < columnas; j++) {
+				result[i][j] = m1[i][j] - m2[i][j];
+			}
+		}
+		
+		return result;
+	}
+	
+	public static void imprimirMatriz(int[][] m) {
+		
+		int filas = m.length;
+		int columnas = m[0].length;
+		
+		for (int i = 0; i < filas; i++) {
+			for (int j = 0; j < columnas; j++){
+				System.out.print(" " + m[i][j]);
+			}
+			System.out.println();
+		}
 	}
 
 }

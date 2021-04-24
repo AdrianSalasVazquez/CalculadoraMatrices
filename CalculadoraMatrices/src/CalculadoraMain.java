@@ -57,6 +57,10 @@ public class CalculadoraMain {
 				
 				case 5: {
 					System.out.println("Diagonal principal de una matriz");
+					
+					int[][] resultado = diagonalMatriz();
+					imprimirMatriz(resultado);
+					
 					break;
 				}
 				
@@ -184,6 +188,28 @@ public class CalculadoraMain {
 		return result;
 	}
 	
+	
+	public static int[][] diagonalMatriz(){
+		int[][] m = crearMatriz();
+		
+		int filas = m.length;
+		int columnas = m[0].length;
+		
+		int[][] diagonal = null;
+		
+		if (filas == columnas) {
+			diagonal = new int[1][columnas];
+			for (int i = 0; i < filas; i++) {
+				diagonal[0][i] = m[i][i];
+			}
+		}
+		else {
+			System.out.println("Matriz no valida para realizar la diagonal.");
+		}
+		
+		return diagonal;
+	}
+	
 	public static void imprimirMatriz(int[][] m) {
 		
 		int filas = m.length;
@@ -191,7 +217,7 @@ public class CalculadoraMain {
 		
 		for (int i = 0; i < filas; i++) {
 			for (int j = 0; j < columnas; j++){
-				System.out.print(" " + m[i][j]);
+				System.out.print(m[i][j] + " ");
 			}
 			System.out.println();
 		}

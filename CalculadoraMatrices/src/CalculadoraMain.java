@@ -43,6 +43,10 @@ public class CalculadoraMain {
 				
 				case 3: {
 					System.out.println("Producto de dos matrices");
+					
+					int[][] resultado = productoDosMatriz();
+					imprimirMatriz(resultado);
+					
 					break;
 				}
 				
@@ -141,6 +145,40 @@ public class CalculadoraMain {
 			for (int j = 0; j < columnas; j++) {
 				result[i][j] = m1[i][j] - m2[i][j];
 			}
+		}
+		
+		return result;
+	}
+	
+	public static int[][] productoDosMatriz(){
+		int[][] m1 = crearMatriz();
+		int[][] m2 = crearMatriz();
+		
+		//Filas matriz 1
+		int filasA = m1.length;
+		//Columnas matriz 1
+		int columnasA = m1[0].length;
+		
+		//Filas matriz 2
+		int filasB = m2.length;
+		//Columnas matriz 2
+		int columnasB = m2[0].length;
+		
+		int[][] result = null;
+		
+		if (columnasA == filasB) {
+			result = new int[filasA][columnasB];
+			
+			for (int i = 0; i < filasA; i++) {
+				for (int j = 0; j < columnasB; j++) {
+					for (int k = 0; k < columnasA; k++)
+					result[i][j] += m1[i][k] * m2[k][j];
+				}
+			}
+			
+		}
+		else {
+			System.out.println("Las matrices no son válidas");
 		}
 		
 		return result;

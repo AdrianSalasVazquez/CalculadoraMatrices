@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 public class CalculadoraMain {
 	
@@ -55,7 +56,8 @@ public class CalculadoraMain {
 				case 4: {
 					System.out.println("Transponer una matriz");
 					
-					int[][] resultado = transpuestaMatriz();
+					int[][] m = crearMatriz();
+					int[][] resultado = transpuestaMatriz(m);
 					System.out.println();
 					imprimirMatriz(resultado);
 					
@@ -74,6 +76,18 @@ public class CalculadoraMain {
 				
 				case 6: {
 					System.out.println("Comprobar si una matriz es simétrica");
+					
+					int[][] m = crearMatriz();
+					boolean resultado = simetriaMatriz(m);
+					System.out.println();
+					
+					if (resultado) {
+						System.out.println("Si que es una matriz simétrica.");
+					}
+					else {
+						System.out.println("No es una matriz simétrica.");
+					}
+					
 					break;
 				}
 				
@@ -219,8 +233,7 @@ public class CalculadoraMain {
 		return diagonal;
 	}
 	
-	public static int[][] transpuestaMatriz(){
-	int[][] m = crearMatriz();
+	public static int[][] transpuestaMatriz(int[][] m){
 	
 	int filas = m.length;
 	int columnas = m[0].length;
@@ -236,17 +249,33 @@ public class CalculadoraMain {
 	return transpuesta;
 	}
 	
+	public static boolean simetriaMatriz(int[][] m) {
+		boolean simetrica = false;
+		
+		if (Arrays.deepEquals(m, transpuestaMatriz(m))) {
+			simetrica = true;
+		}
+		return simetrica;
+	}
+	
 	public static void imprimirMatriz(int[][] m) {
 		
-		int filas = m.length;
-		int columnas = m[0].length;
-		
-		for (int i = 0; i < filas; i++) {
-			for (int j = 0; j < columnas; j++){
-				System.out.print(m[i][j] + " ");
+		if (m != null) {
+			int filas = m.length;
+			int columnas = m[0].length;
+			
+			for (int i = 0; i < filas; i++) {
+				for (int j = 0; j < columnas; j++){
+					System.out.print(m[i][j] + " ");
+				}
+				System.out.println();
 			}
-			System.out.println();
+			
 		}
+		else {
+			System.out.println("No hay matriz disponible.");
+		}
+		
 	}
 
 }

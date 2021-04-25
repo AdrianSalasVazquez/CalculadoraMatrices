@@ -31,6 +31,7 @@ public class CalculadoraMain {
 					System.out.println("Suma de dos matrices: ");
 					
 					int[][] resultado = sumaMatriz();
+					System.out.println();
 					imprimirMatriz(resultado);
 					
 					break;
@@ -45,6 +46,7 @@ public class CalculadoraMain {
 					System.out.println("Producto de dos matrices");
 					
 					int[][] resultado = productoDosMatriz();
+					System.out.println();
 					imprimirMatriz(resultado);
 					
 					break;
@@ -52,6 +54,11 @@ public class CalculadoraMain {
 				
 				case 4: {
 					System.out.println("Transponer una matriz");
+					
+					int[][] resultado = transpuestaMatriz();
+					System.out.println();
+					imprimirMatriz(resultado);
+					
 					break;
 				}
 				
@@ -59,6 +66,7 @@ public class CalculadoraMain {
 					System.out.println("Diagonal principal de una matriz");
 					
 					int[][] resultado = diagonalMatriz();
+					System.out.println();
 					imprimirMatriz(resultado);
 					
 					break;
@@ -78,6 +86,7 @@ public class CalculadoraMain {
 					System.out.println("Resta de dos matrices");
 					
 					int[][] resultado = restaMatriz();
+					System.out.println();
 					imprimirMatriz(resultado);
 					
 					break;
@@ -208,6 +217,23 @@ public class CalculadoraMain {
 		}
 		
 		return diagonal;
+	}
+	
+	public static int[][] transpuestaMatriz(){
+	int[][] m = crearMatriz();
+	
+	int filas = m.length;
+	int columnas = m[0].length;
+	
+	int[][] transpuesta = new int[columnas][filas];
+	
+	for (int i = 0; i < filas; i++) {
+		for (int j = 0; j < columnas; j++) {
+			transpuesta[j][i] = m[i][j];
+		}
+	}
+		
+	return transpuesta;
 	}
 	
 	public static void imprimirMatriz(int[][] m) {

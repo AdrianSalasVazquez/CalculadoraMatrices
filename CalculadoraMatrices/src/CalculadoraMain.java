@@ -40,6 +40,16 @@ public class CalculadoraMain {
 				
 				case 2: {
 					System.out.println("Producto de un escalar por una matriz");
+					
+					int[][] m = crearMatriz();
+					
+					System.out.println("Introduce el escalar:");
+					int escalar = scn.nextInt();
+					
+					int[][] resultado = productoEscalarMatriz(m, escalar);
+					System.out.println();
+					imprimirMatriz(resultado);
+					
 					break;
 				}
 				
@@ -177,6 +187,20 @@ public class CalculadoraMain {
 		return result;
 	}
 	
+	public static int[][] productoEscalarMatriz(int[][] m, int numEscalar){
+		int filas = m.length;
+		int columnas = m[0].length;
+		
+		int[][] res = new int[filas][columnas];
+		
+		for (int i = 0; i < filas; i++) {
+			for (int j = 0; j < columnas; j++) {
+				res[i][j] = numEscalar * m[i][j];
+			}
+		}
+		return res;
+	}
+	
 	public static int[][] productoDosMatriz(){
 		int[][] m1 = crearMatriz();
 		int[][] m2 = crearMatriz();
@@ -211,6 +235,11 @@ public class CalculadoraMain {
 		return result;
 	}
 	
+	public static int[][] potenciaMatriz(int[][] m, int numPotencia) {
+		
+		
+		return null;
+	}
 	
 	public static int[][] diagonalMatriz(){
 		int[][] m = crearMatriz();

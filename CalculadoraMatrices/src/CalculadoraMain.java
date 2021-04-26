@@ -56,7 +56,10 @@ public class CalculadoraMain {
 				case 3: {
 					System.out.println("Producto de dos matrices");
 					
-					int[][] resultado = productoDosMatriz();
+					int[][] m1 = crearMatriz();
+					int[][] m2 = crearMatriz();
+					
+					int[][] resultado = productoDosMatriz(m1, m2);
 					System.out.println();
 					imprimirMatriz(resultado);
 					
@@ -103,6 +106,20 @@ public class CalculadoraMain {
 				
 				case 7: {
 					System.out.println("Potencia de una matriz cuadrada");
+					
+					int[][] m = crearMatriz();
+					System.out.println();
+					System.out.println("Introduce la potencia:");
+					int numPotencia = scn.nextInt();
+					int[][] resultado = potenciaMatriz(m, numPotencia);
+					System.out.println();
+					if (resultado == null) {
+						System.out.println("No es una matriz cuadrada.");
+					}
+					else {
+						imprimirMatriz(resultado);
+					}
+					
 					break;
 				}
 	
@@ -201,10 +218,7 @@ public class CalculadoraMain {
 		return res;
 	}
 	
-	public static int[][] productoDosMatriz(){
-		int[][] m1 = crearMatriz();
-		int[][] m2 = crearMatriz();
-		
+	public static int[][] productoDosMatriz(int[][] m1, int[][] m2){
 		//Filas matriz 1
 		int filasA = m1.length;
 		//Columnas matriz 1
@@ -236,9 +250,18 @@ public class CalculadoraMain {
 	}
 	
 	public static int[][] potenciaMatriz(int[][] m, int numPotencia) {
+		int filas = m.length;
+		int columnas = m[0].length;
+		int [][] resul = null;
 		
+		if (filas == columnas) {
+			resul = m;
+			for (int i = 0; i < (numPotencia - 1); i++) {
+				resul = productoDosMatriz(resul, m);
+			}
+		}
 		
-		return null;
+		return resul;
 	}
 	
 	public static int[][] diagonalMatriz(){

@@ -31,10 +31,17 @@ public class CalculadoraMain {
 				case 1: {
 					System.out.println("Suma de dos matrices: ");
 					
-					int[][] resultado = sumaMatriz();
-					System.out.println();
-					imprimirMatriz(resultado);
+					int[][] m1 = crearMatriz();
+					int[][] m2 = crearMatriz();
 					
+					int[][] resultado = sumaMatriz(m1, m2);
+					System.out.println();
+					if (resultado == null) {
+						System.out.println("Las matrices no son del mismo tamaño.");
+					}
+					else {
+						imprimirMatriz(resultado);
+					}
 					break;
 				}
 				
@@ -80,9 +87,16 @@ public class CalculadoraMain {
 				case 5: {
 					System.out.println("Diagonal principal de una matriz");
 					
-					int[][] resultado = diagonalMatriz();
+					int[][] m = crearMatriz();
+					
+					int[][] resultado = diagonalMatriz(m);
 					System.out.println();
-					imprimirMatriz(resultado);
+					if (resultado == null) {
+						System.out.println("No es una matriz cuadrada.");
+					}
+					else {
+						imprimirMatriz(resultado);
+					}
 					
 					break;
 				}
@@ -126,15 +140,22 @@ public class CalculadoraMain {
 				case 8: {
 					System.out.println("Resta de dos matrices");
 					
-					int[][] resultado = restaMatriz();
-					System.out.println();
-					imprimirMatriz(resultado);
+					int[][] m1 = crearMatriz();
+					int[][] m2 = crearMatriz();
 					
+					int[][] resultado = restaMatriz(m1, m2);
+					System.out.println();
+					if (resultado == null) {
+						System.out.println("Las matrices no son del mismo tamaño.");
+					}
+					else {
+						imprimirMatriz(resultado);
+					}
 					break;
 				}
 				
 				case 9: {
-					System.out.println("Saliendo del programa...");
+					System.out.println("Has salido del programa.");
 					salir = true;
 					break;
 				}
@@ -168,36 +189,43 @@ public class CalculadoraMain {
 		return m;
 	}
 	
-	public static int[][] sumaMatriz() {
-		int[][] m1 = crearMatriz();
-		int[][] m2 = crearMatriz();
-		
+	public static int[][] sumaMatriz(int[][] m1, int[][] m2) {
 		int filas = m1.length;
 		int columnas = m1[0].length;
 		
-		int[][] result = new int[filas][columnas];
+		int filas2 = m2.length;
+		int columnas2 = m2[0].length;
 		
-		for (int i = 0; i < filas; i++) {
-			for (int j = 0; j < columnas; j++) {
-				result[i][j] = m1[i][j] + m2[i][j];
+		int[][] result = null;
+		
+		if (filas == filas2 && columnas == columnas2) {
+			result = new int[filas][columnas];
+			
+			for (int i = 0; i < filas; i++) {
+				for (int j = 0; j < columnas; j++) {
+					result[i][j] = m1[i][j] + m2[i][j];
+				}
 			}
 		}
-		
 		return result;
 	}
 	
-	public static int[][] restaMatriz() {
-		int[][] m1 = crearMatriz();
-		int[][] m2 = crearMatriz();
-		
+	public static int[][] restaMatriz(int[][] m1, int[][] m2) {
 		int filas = m1.length;
 		int columnas = m1[0].length;
 		
-		int[][] result = new int[filas][columnas];
+		int filas2 = m2.length;
+		int columnas2 = m2[0].length;
 		
-		for (int i = 0; i < filas; i++) {
-			for (int j = 0; j < columnas; j++) {
-				result[i][j] = m1[i][j] - m2[i][j];
+		int[][] result = null;
+		
+		if (filas == filas2 && columnas == columnas2) {
+			result = new int[filas][columnas];
+			
+			for (int i = 0; i < filas; i++) {
+				for (int j = 0; j < columnas; j++) {
+					result[i][j] = m1[i][j] - m2[i][j];
+				}
 			}
 		}
 		
@@ -252,6 +280,7 @@ public class CalculadoraMain {
 	public static int[][] potenciaMatriz(int[][] m, int numPotencia) {
 		int filas = m.length;
 		int columnas = m[0].length;
+		
 		int [][] resul = null;
 		
 		if (filas == columnas) {
@@ -264,9 +293,7 @@ public class CalculadoraMain {
 		return resul;
 	}
 	
-	public static int[][] diagonalMatriz(){
-		int[][] m = crearMatriz();
-		
+	public static int[][] diagonalMatriz(int[][] m){
 		int filas = m.length;
 		int columnas = m[0].length;
 		
@@ -278,10 +305,6 @@ public class CalculadoraMain {
 				diagonal[0][i] = m[i][i];
 			}
 		}
-		else {
-			System.out.println("Matriz no valida para realizar la diagonal.");
-		}
-		
 		return diagonal;
 	}
 	

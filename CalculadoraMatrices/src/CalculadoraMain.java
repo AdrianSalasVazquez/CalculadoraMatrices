@@ -30,24 +30,39 @@ public class CalculadoraMain {
 			switch (op) {
 				case 1: {
 					System.out.println("Suma de dos matrices: ");
+					System.out.println();
 					
-					int[][] m1 = crearMatriz();
-					int[][] m2 = crearMatriz();
+					int[][] m1 = null;
+					int[][] m2 = null;
+					
+					do {
+						System.out.println("Creando primera matriz:");
+						m1 = crearMatriz();
+						System.out.println("Creando segunda matriz:");
+						m2 = crearMatriz();
+						
+						if (m1.length != m2.length || m1[0].length != m2[0].length) {
+							System.out.println();
+							System.out.println("Las matrices no son iguales, vuelve a introducirlas.");
+							System.out.println();
+							m1 = null;
+							m2 = null;
+						}
+					}while (m1 == null || m2 == null);
 					
 					int[][] resultado = sumaMatriz(m1, m2);
 					System.out.println();
-					if (resultado == null) {
-						System.out.println("Las matrices no son del mismo tamaño.");
-					}
-					else {
-						imprimirMatriz(resultado);
-					}
+					System.out.println("Resultado de la suma:");
+					imprimirMatriz(resultado);
 					break;
 				}
 				
 				case 2: {
-					System.out.println("Producto de un escalar por una matriz");
 					
+					System.out.println("Producto de un escalar por una matriz");
+					System.out.println();
+					
+					System.out.println("Creando matriz:");
 					int[][] m = crearMatriz();
 					
 					System.out.println("Introduce el escalar:");
@@ -55,56 +70,98 @@ public class CalculadoraMain {
 					
 					int[][] resultado = productoEscalarMatriz(m, escalar);
 					System.out.println();
+					System.out.println("Resultado del escalar por una matriz:");
 					imprimirMatriz(resultado);
 					
 					break;
+					
 				}
 				
 				case 3: {
-					System.out.println("Producto de dos matrices");
 					
-					int[][] m1 = crearMatriz();
-					int[][] m2 = crearMatriz();
+					System.out.println("Producto de dos matrices");
+					System.out.println();
+					
+					int[][] m1 = null;
+					int[][] m2 = null;
+					
+					do {
+						System.out.println("Creando primera matriz:");
+						m1 = crearMatriz();
+						System.out.println("Creando segunda matriz:");
+						m2 = crearMatriz();
+						
+						if (m1[0].length != m2.length) {
+							System.out.println();
+							System.out.println("Las columnas de la primera matriz no son iguales "
+									+ "que las filas de la segunda matriz, vuelve a introducirlas.");
+							System.out.println();
+							m1 = null;
+							m2 = null;
+						}
+					}while (m1 == null || m2 == null);
 					
 					int[][] resultado = productoDosMatriz(m1, m2);
 					System.out.println();
+					System.out.println("Resultado del producto:");
 					imprimirMatriz(resultado);
-					
 					break;
+					
 				}
 				
 				case 4: {
-					System.out.println("Transponer una matriz");
 					
+					System.out.println("Transponer una matriz");
+					System.out.println();
+					
+					System.out.println("Creando la matriz:");
 					int[][] m = crearMatriz();
+					
 					int[][] resultado = transpuestaMatriz(m);
 					System.out.println();
+					System.out.println("Matriz transpuesta:");
 					imprimirMatriz(resultado);
 					
 					break;
+					
 				}
 				
 				case 5: {
-					System.out.println("Diagonal principal de una matriz");
 					
-					int[][] m = crearMatriz();
+					System.out.println("Diagonal principal de una matriz");
+					System.out.println();
+					
+					int[][] m = null;
+					
+					do {
+						System.out.println("Creando una matriz:");
+						m = crearMatriz();
+						
+						if (m.length != m[0].length) {
+							System.out.println();
+							System.out.println("La matriz no es cuadrada, vuelve a introducirla.");
+							System.out.println();
+							m = null;
+						}
+					}while (m == null);
 					
 					int[][] resultado = diagonalMatriz(m);
 					System.out.println();
-					if (resultado == null) {
-						System.out.println("No es una matriz cuadrada.");
-					}
-					else {
-						imprimirMatriz(resultado);
-					}
+					System.out.println("Diagonal de la matriz:");
+					imprimirMatriz(resultado);
 					
 					break;
+					
 				}
 				
 				case 6: {
-					System.out.println("Comprobar si una matriz es simétrica");
 					
+					System.out.println("Comprobar si una matriz es simétrica");
+					System.out.println();
+					
+					System.out.println("Creando una matriz:");
 					int[][] m = crearMatriz();
+					
 					boolean resultado = simetriaMatriz(m);
 					System.out.println();
 					
@@ -116,45 +173,72 @@ public class CalculadoraMain {
 					}
 					
 					break;
+					
 				}
 				
 				case 7: {
-					System.out.println("Potencia de una matriz cuadrada");
 					
-					int[][] m = crearMatriz();
+					System.out.println("Potencia de una matriz cuadrada");
 					System.out.println();
+					
+					int[][] m = null;
+					
+					do {
+						System.out.println("Creando una matriz:");
+						m = crearMatriz();
+						
+						if (m.length != m[0].length) {
+							System.out.println();
+							System.out.println("La matriz no es cuadrada, vuelve a introducirla.");
+							System.out.println();
+							m = null;
+						}
+					}while (m == null);
+					
 					System.out.println("Introduce la potencia:");
 					int numPotencia = scn.nextInt();
 					int[][] resultado = potenciaMatriz(m, numPotencia);
 					System.out.println();
-					if (resultado == null) {
-						System.out.println("No es una matriz cuadrada.");
-					}
-					else {
-						imprimirMatriz(resultado);
-					}
+					System.out.println("Resultado de la potencia:");
+					imprimirMatriz(resultado);
 					
 					break;
+					
 				}
 	
 				case 8: {
-					System.out.println("Resta de dos matrices");
 					
-					int[][] m1 = crearMatriz();
-					int[][] m2 = crearMatriz();
+					System.out.println("Resta de dos matrices");
+					System.out.println();
+					
+					int[][] m1 = null;
+					int[][] m2 = null;
+					
+					do {
+						System.out.println("Creando primera matriz:");
+						m1 = crearMatriz();
+						System.out.println("Creando segunda matriz:");
+						m2 = crearMatriz();
+						
+						if (m1.length != m2.length || m1[0].length != m2[0].length) {
+							System.out.println();
+							System.out.println("Las matrices no son iguales, vuelve a introducirlas.");
+							System.out.println();
+							m1 = null;
+							m2 = null;
+						}
+					}while (m1 == null || m2 == null);
 					
 					int[][] resultado = restaMatriz(m1, m2);
 					System.out.println();
-					if (resultado == null) {
-						System.out.println("Las matrices no son del mismo tamaño.");
-					}
-					else {
-						imprimirMatriz(resultado);
-					}
+					System.out.println("Resultado de la resta:");
+					imprimirMatriz(resultado);
 					break;
+					
 				}
 				
 				case 9: {
+					
 					System.out.println("Has salido del programa.");
 					salir = true;
 					break;
@@ -163,23 +247,34 @@ public class CalculadoraMain {
 				default: {
 					System.out.println("Introduce un número del 1 al 9");
 					break;
+					
 				}
 			}
 		}while(!salir);
 		
 	}
 	
+	/**
+	* Este metodo crea una matriz en base a los valores que introduce el usuario por pantalla.
+	* El usuario debe introducir el numero de filas y columnas y a continuacion los valores uno
+	* a uno de las mismas.
+	* @return int[][] devuelve la matriz creada.
+	*/
 	public static int[][] crearMatriz () {
 		Scanner scn = new Scanner(System.in);
 		
+		System.out.println();
 		System.out.println("Introduce el numero de filas:");
 		int filas = scn.nextInt();
+		System.out.println();
+		
 		System.out.println("Introduce el numero de columnas:");
 		int columnas = scn.nextInt();
 		
 		int[][] m = new int[filas][columnas];
 		
 		for (int i = 0; i < filas; i++) {
+			System.out.println();
 			System.out.println("Valores de la fila " + (i + 1) + ":");
 			for (int j = 0; j < columnas; j++) {
 				int num = scn.nextInt();
@@ -193,20 +288,14 @@ public class CalculadoraMain {
 		int filas = m1.length;
 		int columnas = m1[0].length;
 		
-		int filas2 = m2.length;
-		int columnas2 = m2[0].length;
+		int[][] result = new int[filas][columnas];
 		
-		int[][] result = null;
-		
-		if (filas == filas2 && columnas == columnas2) {
-			result = new int[filas][columnas];
-			
-			for (int i = 0; i < filas; i++) {
-				for (int j = 0; j < columnas; j++) {
-					result[i][j] = m1[i][j] + m2[i][j];
-				}
+		for (int i = 0; i < filas; i++) {
+			for (int j = 0; j < columnas; j++) {
+				result[i][j] = m1[i][j] + m2[i][j];
 			}
-		}
+		}	
+
 		return result;
 	}
 	
@@ -214,18 +303,11 @@ public class CalculadoraMain {
 		int filas = m1.length;
 		int columnas = m1[0].length;
 		
-		int filas2 = m2.length;
-		int columnas2 = m2[0].length;
-		
-		int[][] result = null;
-		
-		if (filas == filas2 && columnas == columnas2) {
-			result = new int[filas][columnas];
+		int[][] result = new int[filas][columnas];
 			
-			for (int i = 0; i < filas; i++) {
-				for (int j = 0; j < columnas; j++) {
-					result[i][j] = m1[i][j] - m2[i][j];
-				}
+		for (int i = 0; i < filas; i++) {
+			for (int j = 0; j < columnas; j++) {
+				result[i][j] = m1[i][j] - m2[i][j];
 			}
 		}
 		
@@ -252,42 +334,25 @@ public class CalculadoraMain {
 		//Columnas matriz 1
 		int columnasA = m1[0].length;
 		
-		//Filas matriz 2
-		int filasB = m2.length;
 		//Columnas matriz 2
 		int columnasB = m2[0].length;
 		
-		int[][] result = null;
+		int [][] result = new int[filasA][columnasB];
 		
-		if (columnasA == filasB) {
-			result = new int[filasA][columnasB];
-			
-			for (int i = 0; i < filasA; i++) {
-				for (int j = 0; j < columnasB; j++) {
-					for (int k = 0; k < columnasA; k++)
-					result[i][j] += m1[i][k] * m2[k][j];
-				}
+		for (int i = 0; i < filasA; i++) {
+			for (int j = 0; j < columnasB; j++) {
+				for (int k = 0; k < columnasA; k++)
+				result[i][j] += m1[i][k] * m2[k][j];
 			}
-			
-		}
-		else {
-			System.out.println("Las matrices no son válidas");
-		}
+		}	
 		
 		return result;
 	}
 	
 	public static int[][] potenciaMatriz(int[][] m, int numPotencia) {
-		int filas = m.length;
-		int columnas = m[0].length;
-		
-		int [][] resul = null;
-		
-		if (filas == columnas) {
-			resul = m;
-			for (int i = 0; i < (numPotencia - 1); i++) {
-				resul = productoDosMatriz(resul, m);
-			}
+		int[][] resul = m;
+		for (int i = 0; i < (numPotencia - 1); i++) {
+			resul = productoDosMatriz(resul, m);
 		}
 		
 		return resul;
@@ -297,14 +362,11 @@ public class CalculadoraMain {
 		int filas = m.length;
 		int columnas = m[0].length;
 		
-		int[][] diagonal = null;
-		
-		if (filas == columnas) {
-			diagonal = new int[1][columnas];
-			for (int i = 0; i < filas; i++) {
-				diagonal[0][i] = m[i][i];
-			}
+		int[][] diagonal = new int[1][columnas];
+		for (int i = 0; i < filas; i++) {
+			diagonal[0][i] = m[i][i];
 		}
+		
 		return diagonal;
 	}
 	
@@ -334,23 +396,15 @@ public class CalculadoraMain {
 	}
 	
 	public static void imprimirMatriz(int[][] m) {
+		int filas = m.length;
+		int columnas = m[0].length;
 		
-		if (m != null) {
-			int filas = m.length;
-			int columnas = m[0].length;
-			
-			for (int i = 0; i < filas; i++) {
-				for (int j = 0; j < columnas; j++){
-					System.out.print(m[i][j] + " ");
-				}
-				System.out.println();
+		for (int i = 0; i < filas; i++) {
+			for (int j = 0; j < columnas; j++){
+				System.out.print(m[i][j] + " ");
 			}
-			
+			System.out.println();
 		}
-		else {
-			System.out.println("No hay matriz disponible.");
-		}
-		
 	}
 
 }

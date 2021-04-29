@@ -1,5 +1,9 @@
+package CDM1.adrianSalasVazquez;
+
 import java.util.Arrays;
+
 import java.util.Scanner;
+
 public class CalculadoraMain {
 	
 	public static void main(String[] args) {
@@ -9,6 +13,7 @@ public class CalculadoraMain {
 		boolean salir = false;
 		int op;
 		
+		//Menu de la calculadora:
 		do {
 			System.out.println();
 			System.out.println("Introduce una opción:");
@@ -41,6 +46,7 @@ public class CalculadoraMain {
 						System.out.println("Creando segunda matriz:");
 						m2 = crearMatriz();
 						
+						//Comprueba si las matrices son iguales
 						if (m1.length != m2.length || m1[0].length != m2[0].length) {
 							System.out.println();
 							System.out.println("Las matrices no son iguales, vuelve a introducirlas.");
@@ -91,6 +97,7 @@ public class CalculadoraMain {
 						System.out.println("Creando segunda matriz:");
 						m2 = crearMatriz();
 						
+						//Comprueba si el número de columnas de la matriz 1 y de filas de la matriz 2 son iguales
 						if (m1[0].length != m2.length) {
 							System.out.println();
 							System.out.println("Las columnas de la primera matriz no son iguales "
@@ -137,6 +144,7 @@ public class CalculadoraMain {
 						System.out.println("Creando una matriz:");
 						m = crearMatriz();
 						
+						//Comprueba si la matriz es cuadrada
 						if (m.length != m[0].length) {
 							System.out.println();
 							System.out.println("La matriz no es cuadrada, vuelve a introducirla.");
@@ -187,6 +195,7 @@ public class CalculadoraMain {
 						System.out.println("Creando una matriz:");
 						m = crearMatriz();
 						
+						//Comprueba si la matriz es cuadrada
 						if (m.length != m[0].length) {
 							System.out.println();
 							System.out.println("La matriz no es cuadrada, vuelve a introducirla.");
@@ -220,6 +229,7 @@ public class CalculadoraMain {
 						System.out.println("Creando segunda matriz:");
 						m2 = crearMatriz();
 						
+						//Comprueba si las matrices son iguales
 						if (m1.length != m2.length || m1[0].length != m2[0].length) {
 							System.out.println();
 							System.out.println("Las matrices no son iguales, vuelve a introducirlas.");
@@ -254,8 +264,10 @@ public class CalculadoraMain {
 		
 	}
 	
+	//Métodos de la calculadora:
+	
 	/**
-	* Este metodo crea una matriz en base a los valores que introduce el usuario por pantalla.
+	* Este método crea una matriz en base a los valores que introduce el usuario por pantalla.
 	* El usuario debe introducir el numero de filas y columnas y a continuacion los valores uno
 	* a uno de las mismas.
 	* @return int[][] devuelve la matriz creada.
@@ -284,6 +296,13 @@ public class CalculadoraMain {
 		return m;
 	}
 	
+	/**
+	* Este método realiza la suma de dos matrices introducidas por parámetro (m1 + m2)
+	* y devuelve el resultado de la misma.
+	* @param int[][] m1 primera matriz de entrada para la suma.
+	* @param int[][] m2 segunda matriz de entrada para la suma.
+	* @return int[][] devuelve la matriz resultada de la suma.
+	*/
 	public static int[][] sumaMatriz(int[][] m1, int[][] m2) {
 		int filas = m1.length;
 		int columnas = m1[0].length;
@@ -299,6 +318,13 @@ public class CalculadoraMain {
 		return result;
 	}
 	
+	/**
+	* Este método realiza la resta de dos matrices introducidas por parámetro (m1 - m2)
+	* y devuelve el resultado de la misma.
+	* @param int[][] m1 primera matriz de entrada para la resta.
+	* @param int[][] m2 segunda matriz de entrada para la resta.
+	* @return int[][] devuelve la matriz resultada de la resta.
+	*/
 	public static int[][] restaMatriz(int[][] m1, int[][] m2) {
 		int filas = m1.length;
 		int columnas = m1[0].length;
@@ -314,6 +340,13 @@ public class CalculadoraMain {
 		return result;
 	}
 	
+	/**
+	* Este método realiza el producto de una matriz por un escalar 
+	* introducidos por parámetro (m * numEscalar), y devuelve el resultado.
+	* @param int[][] m matriz de entrada para el producto.
+	* @param int numEscalar numero para realizar el producto.
+	* @return int[][] devuelve la matriz resultada del producto.
+	*/
 	public static int[][] productoEscalarMatriz(int[][] m, int numEscalar){
 		int filas = m.length;
 		int columnas = m[0].length;
@@ -328,6 +361,12 @@ public class CalculadoraMain {
 		return res;
 	}
 	
+	/**
+	* Este método realiza el producto de dos matrices introducidas por parámetro (m1 * m2), y devuelve el resultado.
+	* @param int[][] m1 primera matriz de entrada para el producto.
+	* @param int[][] m2 segunda matriz de entrada para el producto.
+	* @return int[][] devuelve la matriz resultada del producto.
+	*/
 	public static int[][] productoDosMatriz(int[][] m1, int[][] m2){
 		//Filas matriz 1
 		int filasA = m1.length;
@@ -349,6 +388,12 @@ public class CalculadoraMain {
 		return result;
 	}
 	
+	/**
+	* Este método realiza la potencia de una matriz introducida por parámetro (m^numPotencia), y devuelve el resultado.
+	* @param int[][] m matriz de entrada para la potencia.
+	* @param int numPotencia numero por el que se realiza la potencia.
+	* @return int[][] devuelve la matriz resultada de la potencia.
+	*/
 	public static int[][] potenciaMatriz(int[][] m, int numPotencia) {
 		int[][] resul = m;
 		for (int i = 0; i < (numPotencia - 1); i++) {
@@ -358,6 +403,11 @@ public class CalculadoraMain {
 		return resul;
 	}
 	
+	/**
+	* Este método localiza la diagonal principal de la matriz de entrada (m), y devuelve una matriz con la diagonal.
+	* @param int[][] m matriz usada para calcular la diagonal.
+	* @return int[][] devuelve la diagonal principal de (m).
+	*/
 	public static int[][] diagonalMatriz(int[][] m){
 		int filas = m.length;
 		int columnas = m[0].length;
@@ -370,6 +420,11 @@ public class CalculadoraMain {
 		return diagonal;
 	}
 	
+	/**
+	* Este método transpone (intercambia filas por columnas) la matriz de entrada (m), y devuelve la matriz resultante.
+	* @param int[][] m matriz usada para transponer.
+	* @return int[][] devuelve la matriz transpuesta.
+	*/
 	public static int[][] transpuestaMatriz(int[][] m){
 	
 	int filas = m.length;
@@ -386,6 +441,12 @@ public class CalculadoraMain {
 	return transpuesta;
 	}
 	
+	/**
+	* Este método identifica si una matriz es simetrica o no, comparando la matriz de entrada (m) 
+	* con su propia transpuesta, y devuelve un valor booleano.
+	* @param int[][] m matriz usada para comprobar la simetría.
+	* @return boolean devuelve (true) si es simétrica, y (false) si no es simétrica.
+	*/
 	public static boolean simetriaMatriz(int[][] m) {
 		boolean simetrica = false;
 		
@@ -395,6 +456,10 @@ public class CalculadoraMain {
 		return simetrica;
 	}
 	
+	/**
+	* Este método imprime por pantalla la matriz de entrada (m).
+	* @param int[][] m matriz que se va a imprimir.
+	*/
 	public static void imprimirMatriz(int[][] m) {
 		int filas = m.length;
 		int columnas = m[0].length;

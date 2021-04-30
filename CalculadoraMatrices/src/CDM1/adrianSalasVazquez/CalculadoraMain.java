@@ -4,6 +4,9 @@ import java.util.Arrays;
 
 import java.util.Scanner;
 
+/**
+ * @author Adrián Salas Vázquez
+ */
 public class CalculadoraMain {
 	
 	public static void main(String[] args) {
@@ -46,15 +49,7 @@ public class CalculadoraMain {
 						System.out.println("Creando segunda matriz:");
 						m2 = crearMatriz();
 						
-						//Comprueba si las matrices son iguales
-						if (m1.length != m2.length || m1[0].length != m2[0].length) {
-							System.out.println();
-							System.out.println("Las matrices no son iguales, vuelve a introducirlas.");
-							System.out.println();
-							m1 = null;
-							m2 = null;
-						}
-					}while (m1 == null || m2 == null);
+					}while (!comprobarMatricesIguales(m1,m2));
 					
 					int[][] resultado = sumaMatriz(m1, m2);
 					System.out.println();
@@ -143,15 +138,7 @@ public class CalculadoraMain {
 					do {
 						System.out.println("Creando una matriz:");
 						m = crearMatriz();
-						
-						//Comprueba si la matriz es cuadrada
-						if (m.length != m[0].length) {
-							System.out.println();
-							System.out.println("La matriz no es cuadrada, vuelve a introducirla.");
-							System.out.println();
-							m = null;
-						}
-					}while (m == null);
+					}while (!comprobarMatrizCuadrada(m));
 					
 					int[][] resultado = diagonalMatriz(m);
 					System.out.println();
@@ -172,15 +159,7 @@ public class CalculadoraMain {
 					do {
 						System.out.println("Creando una matriz:");
 						m = crearMatriz();
-						
-						//Comprueba si la matriz es cuadrada
-						if (m.length != m[0].length) {
-							System.out.println();
-							System.out.println("La matriz no es cuadrada, vuelve a introducirla.");
-							System.out.println();
-							m = null;
-						}
-					}while (m == null);
+					}while (!comprobarMatrizCuadrada(m));
 					
 					boolean resultado = simetriaMatriz(m);
 					System.out.println();
@@ -206,15 +185,7 @@ public class CalculadoraMain {
 					do {
 						System.out.println("Creando una matriz:");
 						m = crearMatriz();
-						
-						//Comprueba si la matriz es cuadrada
-						if (m.length != m[0].length) {
-							System.out.println();
-							System.out.println("La matriz no es cuadrada, vuelve a introducirla.");
-							System.out.println();
-							m = null;
-						}
-					}while (m == null);
+					}while (!comprobarMatrizCuadrada(m));
 					
 					System.out.println("Introduce la potencia:");
 					int numPotencia = scn.nextInt();
@@ -241,15 +212,7 @@ public class CalculadoraMain {
 						System.out.println("Creando segunda matriz:");
 						m2 = crearMatriz();
 						
-						//Comprueba si las matrices son iguales
-						if (m1.length != m2.length || m1[0].length != m2[0].length) {
-							System.out.println();
-							System.out.println("Las matrices no son iguales, vuelve a introducirlas.");
-							System.out.println();
-							m1 = null;
-							m2 = null;
-						}
-					}while (m1 == null || m2 == null);
+					}while (!comprobarMatricesIguales(m1,m2));
 					
 					int[][] resultado = restaMatriz(m1, m2);
 					System.out.println();
@@ -466,6 +429,39 @@ public class CalculadoraMain {
 			simetrica = true;
 		}
 		return simetrica;
+	}
+	
+	/**
+	* Este método comprueba si las matrices de entrada (m1,m2) son iguales o no, y devuelve un valor booleano
+	* @param int[][] m1 Primera matriz usada para comparar.
+	* @param int[][] m2 Segunda matriz usada para comparar.
+	* @return boolean devuelve (true) si son iguales, y (false) si no lo son.
+	*/
+	public static boolean comprobarMatricesIguales(int[][] m1, int[][] m2) {
+		boolean valor = true;
+		if (m1.length != m2.length || m1[0].length != m2[0].length) {
+			System.out.println();
+			System.out.println("Las matrices no son iguales, vuelve a introducirlas.");
+			System.out.println();
+			valor = false;
+		}
+		return valor;
+	}
+	
+	/**
+	* Este método comprueba si la matriz de entrada (m) es cuadrada (mismas filas que columnas), y devuelve un valor booleano
+	* @param int[][] m Matriz usada para comprobar.
+	* @return boolean devuelve (true) si es cuadrada, y (false) si no lo es.
+	*/
+	public static boolean comprobarMatrizCuadrada(int[][] m) {
+		boolean valor = true;
+		if (m.length != m[0].length) {
+			System.out.println();
+			System.out.println("La matriz no es cuadrada, vuelve a introducirla.");
+			System.out.println();
+			valor = false;
+		}
+		return valor;
 	}
 	
 	/**

@@ -167,8 +167,20 @@ public class CalculadoraMain {
 					System.out.println("Comprobar si una matriz es simétrica");
 					System.out.println();
 					
-					System.out.println("Creando una matriz:");
-					int[][] m = crearMatriz();
+					int[][] m = null;
+					
+					do {
+						System.out.println("Creando una matriz:");
+						m = crearMatriz();
+						
+						//Comprueba si la matriz es cuadrada
+						if (m.length != m[0].length) {
+							System.out.println();
+							System.out.println("La matriz no es cuadrada, vuelve a introducirla.");
+							System.out.println();
+							m = null;
+						}
+					}while (m == null);
 					
 					boolean resultado = simetriaMatriz(m);
 					System.out.println();
